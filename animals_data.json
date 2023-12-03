@@ -1,0 +1,5 @@
+[
+    {"id": 1, "name": "Lion", "habitat": "Grasslands"},
+    {"id": 2, "name": "Dolphin", "habitat": "Ocean"},
+    {"id": 3, "name": "Eagle", "habitat": "Mountains"}
+]
