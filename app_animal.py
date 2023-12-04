@@ -1,38 +1,37 @@
-from flask import Flask, jsonify, request
 import json
 
-app = Flask(__name__)
+app = Flask(_name_)
 
 # Hello World Endpoint
 @app.route('/')
 def hello_world():
-    return 'Hello Animal World!'
+    return 'Hello World!'
 
-# Get All Animals Endpoint
-@app.route('/animals', methods=['GET'])
-def get_all_animals():
-    with open('animals_data.json', 'r') as file:
-        animals = json.load(file)
-    return jsonify(animals)
+# Get All Tweets Endpoint
+@app.route('/tweets', methods=['GET'])
+def get_all_tweets():
+    with open('100tweets.json', 'r') as file:
+        tweets = json.load(file)
+    return jsonify(tweets)
 
-# Filter Animals Endpoint
-@app.route('/animals', methods=['GET'])
-def filter_animals():
+# Filter Tweets Endpoint
+@app.route('/tweets', methods=['GET'])
+def filter_tweets():
     filter_value = request.args.get('filter')
-    with open('animals_data.json', 'r') as file:
-        animals = json.load(file)
-    filtered_animals = [animal for animal in animals if filter_value.lower() in animal.values()]
-    return jsonify(filtered_animals)
+    with open('100tweets.json', 'r') as file:
+        tweets = json.load(file)
+    filtered_tweets = [tweet for tweet in tweets if filter_value in tweet.values()]
+    return jsonify(filtered_tweets)
 
-# Get Specific Animal Endpoint
-@app.route('/animal/<int:animal_id>', methods=['GET'])
-def get_animal(animal_id):
-    with open('animals_data.json', 'r') as file:
-        animals = json.load(file)
-    for animal in animals:
-        if animal.get('id') == animal_id:
-            return jsonify(animal)
-    return jsonify({'error': 'Animal not found'}), 404
+# Get Specific Tweet Endpoint
+@app.route('/tweet/<int:tweet_id>', methods=['GET'])
+def get_tweet(tweet_id):
+    with open('100tweets.json', 'r') as file:
+        tweets = json.load(file)
+    for tweet in tweets:
+        if tweet.get('id') == tweet_id:
+            return jsonify(tweet)
+    return jsonify({'error': 'Tweet not found'}), 404
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     app.run(debug=True)
